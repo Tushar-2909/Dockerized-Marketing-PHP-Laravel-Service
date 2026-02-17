@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 5.5%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 43 54% 51%;
+    --primary-foreground: 0 0% 5.5%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 43 54% 51%;
+    --accent-foreground: 0 0% 5.5%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 43 54% 51%;
+
+    --radius: 0px;
+
+    --sidebar-background: 0 0% 5.5%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 43 54% 51%;
+    --sidebar-primary-foreground: 0 0% 5.5%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 43 54% 51%;
+  }
+
+  .dark {
+    --background: 0 0% 5.5%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 43 54% 51%;
+    --primary-foreground: 0 0% 5.5%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 43 54% 51%;
+    --accent-foreground: 0 0% 5.5%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 43 54% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-light tracking-tight;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent;
+  }
+
+  .border-subtle {
+    @apply border-border/50;
+  }
+
+  .link-underline {
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-px after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-500 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+
+  .input-underline {
+    @apply bg-transparent border-0 border-b border-border/50 rounded-none px-0 py-4 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 focus:outline-none transition-colors duration-500;
+  }
+}
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}
