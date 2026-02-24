@@ -44,6 +44,13 @@ jobs:
           cp .env.example .env
           php artisan key:generate
 
+      # 🔥 FIXED SECTION (Clean SQLite Every Run)
+      - name: Prepare Fresh SQLite Database
+        run: |
+          cd Backend
+          rm -f database/database.sqlite
+          touch database/database.sqlite
+
       - name: Run Migrations
         run: |
           cd Backend
@@ -53,6 +60,7 @@ jobs:
         run: |
           cd Backend
           php artisan test
+
 
   frontend:
     runs-on: ubuntu-latest
@@ -74,6 +82,7 @@ jobs:
         run: |
           cd Frontend
           npm run build
+
 
   docker:
     runs-on: ubuntu-latest
