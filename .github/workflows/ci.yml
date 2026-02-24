@@ -69,15 +69,11 @@ jobs:
 
       - name: Login to Docker Hub
         run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login \
+          -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Set Image Name
-        run: echo "IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/marketing-app:latest" >> $GITHUB_ENV
+      - name: Build Docker Images
+        run: docker compose build
 
-      - name: Build Docker Image
-        run: |
-          docker build -t $IMAGE_NAME .
-
-      - name: Push Docker Image
-        run: |
-          docker push $IMAGE_NAME
+      - name: Push Docker Images
+        run: docker compose push
