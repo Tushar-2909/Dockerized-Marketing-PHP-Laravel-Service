@@ -9,22 +9,6 @@ jobs:
   backend:
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_DATABASE: marketing
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-
     steps:
       - uses: actions/checkout@v4
 
@@ -44,17 +28,8 @@ jobs:
           cp .env.example .env
           php artisan key:generate
 
-      # 🔥 FIXED SECTION (Clean SQLite Every Run)
-      - name: Prepare Fresh SQLite Database
-        run: |
-          cd Backend
-          rm -f database/database.sqlite
-          touch database/database.sqlite
-
-      - name: Run Migrations
-        run: |
-          cd Backend
-          php artisan migrate --force
+      # ❌ Removed manual migrate step
+      # Laravel tests will handle DB automatically
 
       - name: Run Tests
         run: |
